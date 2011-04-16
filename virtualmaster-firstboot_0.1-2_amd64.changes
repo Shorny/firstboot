@@ -1,0 +1,28 @@
+Format: 1.8
+Date: Fri, 15 Apr 2011 21:28:06 +0200
+Source: virtualmaster-firstboot
+Binary: virtualmaster-firstboot
+Architecture: source all
+Version: 0.1-2
+Distribution: unstable
+Urgency: low
+Maintainer: Josef Liska <jl@chl.cz>
+Changed-By: Jan Šíma <sima@compwork.cz>
+Description: 
+ virtualmaster-firstboot - Configures network and users on first boot of VM
+Changes: 
+ virtualmaster-firstboot (0.1-2) unstable; urgency=low
+ .
+   * Fixed deb package - directory and link
+Checksums-Sha1: 
+ 37316f175f56d15b9c6fbec0e544f8d7e2c78a27 517 virtualmaster-firstboot_0.1-2.dsc
+ 1dfe1c078547a368719e576574f0c60613cd84e8 14095 virtualmaster-firstboot_0.1-2.tar.gz
+ 13c4d63ca0c7a8c2e98c28d88ea30d94c26cd88a 13260 virtualmaster-firstboot_0.1-2_all.deb
+Checksums-Sha256: 
+ c6c645deadb5a1ded17bae3746c754792d01950c0c94ae7be0608bddba4ebf97 517 virtualmaster-firstboot_0.1-2.dsc
+ b410fa4d43ff6e37e5752e5ed3baad07649e36f25d61fd0485bbd82b57dd79d8 14095 virtualmaster-firstboot_0.1-2.tar.gz
+ 3dbd04d95af16e2ecf77af98abb861b5469f76d1bbe137edf7141fd72e4dac7d 13260 virtualmaster-firstboot_0.1-2_all.deb
+Files: 
+ 64fe1d3b1882348190bab5b9016ab07a 517 unknown extra virtualmaster-firstboot_0.1-2.dsc
+ 85838bb3c50c122d61f0274089c811b3 14095 unknown extra virtualmaster-firstboot_0.1-2.tar.gz
+ f45113037edfd9f63a61b9ac1f8f726c 13260 unknown extra virtualmaster-firstboot_0.1-2_all.deb
