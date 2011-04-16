@@ -1,8 +1,11 @@
 #!/bin/sh -e
 ### BEGIN INIT INFO
 # Provides:          virtualmaster
-# Required-Start:    $local_fs
+# Required-Start:    bootlogd udev 
+# Required-Stop:
 # Default-Start:     S
+# Default-Stop:
+# X-Start-Before:    hostname
 # Short-Description: Configures network and users on first boot of VM
 ### END INIT INFO
 # Configures network and users on first boot of VM
@@ -14,7 +17,7 @@
 # - optionaly create users and add ssh keys
 #
 #
-
+echo "Test virtualmaster.cfg is exist"
 [ -f /etc/virtualmaster.cfg ] || exit 0;
 echo "Running virtualmaster firstboot script"
 . /etc/virtualmaster.cfg

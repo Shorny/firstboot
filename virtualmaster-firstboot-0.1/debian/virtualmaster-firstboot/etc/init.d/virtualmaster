@@ -1,8 +1,11 @@
 #!/bin/sh -e
 ### BEGIN INIT INFO
 # Provides:          virtualmaster
-# Required-Start:    $local_fs
+# Required-Start:    bootlogd udev 
+# Required-Stop:
 # Default-Start:     S
+# Default-Stop:
+# X-Start-Before:    hostname
 # Short-Description: Configures network and users on first boot of VM
 ### END INIT INFO
 # Configures network and users on first boot of VM
@@ -14,7 +17,7 @@
 # - optionaly create users and add ssh keys
 #
 #
-
+echo "Test virtualmaster.cfg is exist"
 [ -f /etc/virtualmaster.cfg ] || exit 0;
 echo "Running virtualmaster firstboot script"
 . /etc/virtualmaster.cfg
@@ -31,14 +34,14 @@ virtualmaster_timestamp=`date +%c`
 
 # create new interfaces file
 
-echo "network-scripts/ifcfg-eth0"
+echo "network interfaces"
 
-cat /etc/virtualmaster/network-redhat.tpl | \
+cat /etc/virtualmaster/network.tpl | \
   sed -e "s/_virtualmaster_timestamp_/$virtualmaster_timestamp/" |\
   sed -e "s/_virtualmaster_ipv4_address_/$virtualmaster_ipv4_address/" |\
   sed -e "s/_virtualmaster_ipv4_netmask_/$virtualmaster_ipv4_netmask/" |\
   sed -e "s/_virtualmaster_ipv4_gateway_/$virtualmaster_ipv4_gateway/" \
-  > /etc/sysconfig/network-scripts/ifcfg-eth0
+  > /etc/network/interfaces
 
 echo "resolv.conf"
 
@@ -55,10 +58,6 @@ cat /etc/virtualmaster/resolv.tpl | \
 echo $virtualmaster_hostname > /etc/hostname
 echo $virtualmaster_hostname > /etc/mailname
 hostname $virtualmaster_hostname
-
-echo "NETWORKING=yes" > /etc/sysconfig/network
-echo "GATEWAY=" >> /etc/sysconfig/network
-echo "HOSTNAME=$virtualmaster_hostname" >> /etc/sysconfig/network
 
 # config /etc/hosts
 virtualmaster_short_hostname=`echo "$virtualmaster_hostname" | cut -d . -f 1`
@@ -79,7 +78,9 @@ cat /etc/virtualmaster/hosts.tpl | \
 #  >> $udev_file
 
 # set root's password
-echo "root:$virtualmaster_password_root" | chpasswd -e
+# no more chpasswd -e in ubuntu karmic, we have to use usermod
+#echo "root:$virtualmaster_password_root" | chpasswd -e
+usermod -p "$virtualmaster_password_root" root
 
 # create users
 for user in $virtualmaster_create_users; do
@@ -109,12 +110,21 @@ for user in $virtualmaster_create_users; do
     echo "Warning, not setting password for user $user, no password supplied."
   else
     echo "Setting password for user $user"
-    echo "$user:$pass" | chpasswd -e
+    # same as above, no more chpasswd -e
+    # echo "$user:$pass" | chpasswd -e
+    usermod -p "$pass" $user
   fi
 done
 
 # generate ssh host keys unless allready present
-# generating not necessary on centos, since ssh init script does this
+if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
+    echo "Generating new RSA host key for ssh"
+    ssh-keygen -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N ''
+fi
+if [ ! -f /etc/ssh/ssh_host_dsa_key ]; then
+    echo "Generating new DSA host key for ssh"
+    ssh-keygen -t dsa -b 1024 -f /etc/ssh/ssh_host_dsa_key -N ''
+fi
 
 # ensure virtualmaster.cfg is not readable for normal users
 chmod 400 /etc/virtualmaster.cfg

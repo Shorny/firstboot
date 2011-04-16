@@ -1,8 +1,8 @@
 Package: virtualmaster-firstboot
-Version: 0.1-1
+Version: 0.1-2
 Architecture: all
 Maintainer: Josef Liska <jl@chl.cz>
-Installed-Size: 108
+Installed-Size: 188
 Section: unknown
 Priority: extra
 Description: Configures network and users on first boot of VM

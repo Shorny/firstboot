@@ -1,6 +1,6 @@
-0056ffa9ad04831cd9f15ae5889a87c0  usr/share/doc/virtualmaster/virtualmaster.cfg.sample
-e9d0698fcfe4b3b674045620ccf881dd  usr/share/doc/virtualmaster/README
-772af924fa1bef5065329921393b53c3  usr/share/doc/virtualmaster/LICENSE.gz
-0fcff03f76046a8130e8a55f843196d5  usr/share/doc/virtualmaster-firstboot/copyright
 a9a8aad4aa5b3bf766428fa8fb019bf2  usr/share/doc/virtualmaster-firstboot/README.Debian
-04c27ee6ef01c27b04fd47426f0f2e6d  usr/share/doc/virtualmaster-firstboot/changelog.Debian.gz
+1c924fe88aab99d55cdb0466439d7c87  usr/share/doc/virtualmaster-firstboot/changelog.Debian.gz
+0fcff03f76046a8130e8a55f843196d5  usr/share/doc/virtualmaster-firstboot/copyright
+19fef20f9c4bf1dbc759bdff0261c66c  usr/share/doc/virtualmaster/LICENSE.gz
+e9d0698fcfe4b3b674045620ccf881dd  usr/share/doc/virtualmaster/README
+0056ffa9ad04831cd9f15ae5889a87c0  usr/share/doc/virtualmaster/virtualmaster.cfg.sample
