@@ -2,6 +2,9 @@
 
 # Script for clean before create template on virtualmaster 
 
+# reset root passwd to "master"
+usermod -p "viMsfzJzmXt9Q" root
+
 # clear all logs
 echo "Clear logs start"
 `find /var/log -type f`; do > $logs; done
